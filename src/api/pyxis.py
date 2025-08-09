@@ -149,14 +149,14 @@ class PyxisClient:
                     "page": 0,
                 }
                 
-                # Add filters based on what we're trying
+                # Add filters based on what we're trying (using correct RSQL syntax)
                 for key, value in filter_params.items():
                     if value and key == "repository":
-                        params["filter"] = f"repository=like=*{value.lower()}*"
+                        params["filter"] = f"repository==\"*{value.lower()}*\""
                     elif value and key == "name":
-                        params["filter"] = f"name=like=*{value.lower()}*"
+                        params["filter"] = f"name==\"*{value.lower()}*\""
                     elif value and key == "registry":
-                        params["filter"] = f"repositories.registry=like=*{value}*"
+                        params["filter"] = f"repositories.registry==\"*{value}*\""
                 
                 logger.debug(f"Trying endpoint '{endpoint}' with params: {params}")
                 response = self._make_request(endpoint, params)
@@ -182,7 +182,7 @@ class PyxisClient:
         }
         
         if name_filter:
-            params["filter"] = f"name=like=*{name_filter}*"
+            params["filter"] = f"name==\"*{name_filter}*\""
         
         try:
             response = self._make_request("product-listings", params)
@@ -293,7 +293,7 @@ class PyxisClient:
             params = {
                 "page_size": 100,
                 "page": 0,
-                "filter": "repository=like=*openshift*",
+                "filter": "repository==\"*openshift*\"",
                 "include": "data.product_listings",
             }
             

@@ -24,7 +24,7 @@ class Config:
     # API settings
     PYXIS_BASE_URL = os.getenv(
         "PYXIS_BASE_URL", 
-        "https://catalog.redhat.com/api/containers"
+        "https://catalog.redhat.com/api/containers/v1/"
     )
     SECURITY_DATA_BASE_URL = os.getenv(
         "SECURITY_DATA_BASE_URL",

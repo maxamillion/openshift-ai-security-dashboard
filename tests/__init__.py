@@ -1,1 +1,0 @@
-"""Test suite for OpenShift AI Security Dashboard."""
